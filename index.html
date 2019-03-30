@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OA系统</title>
+    <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+       body{
+           background-image: url('C:/Users/Raymone Jones/Desktop/myproject/1.jpg');
+           background-repeat:no-repeat;
+           background-size:100% 100%; 
+            background-attachment: fixed;   
+       }
+        .logindiv
+        {
+            margin:20%;
+            padding: 5%;
+            /* background-color: rgb(28, 83, 155) */
+           
+        }
+        .loginbt{
+            margin-left:45%;
+        }
+        #bt1{
+            background-color:rgb(41, 127, 240);
+            width: 50px;
+            height: 25px;
+            border: 0px;
+            
+        }
+        #bt2{
+            /* background-color:rgb(41, 127, 240); */
+            width: 50px;
+            height: 25px;
+            border: 0px;
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logindiv">
+        <form name="loginform">
+            <table align="center">
+                <tr>
+                    <td>
+                        用户名：
+                    </td>
+                    <td>
+                        <input type="text" id="user"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        密码：
+                    </td>
+                    <td>
+                        <input type="password" id="psd"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div class="loginbt" >
+            
+            <button id="bt1" type="submit" onclick=fun_submit()>登录</button>
+            <button id="bt2" type="reset" onclick=fun_reset()>重置</button>
+        </div>
+        
+    </div>
+    <script type="text/javascript">
+    function fun_submit()
+    {
+        var user_val = document.getElementById("user").value;
+        var psd_val = document.getElementById("psd").value;
+
+        if(user_val==""){
+            alert("用户名不能为空！");
+        }else if(psd_val==""){
+            alert("密码不能为空！");
+        }
+    }
+
+    function myfun_reset()
+    {
+        document.getElementById("user").value = "";
+        document.getElementById("password").value = "";
+        
+    }
+    </script>
+</body>
+</html>
