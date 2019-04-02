@@ -1,0 +1,74 @@
+.left{
+    float: left;
+    border:1px solid aliceblue;
+    width: 50%;
+    height:99%;
+    margin-top: 5px;
+
+}
+.right{
+    float: left;
+
+    width: 48%;
+    height:99%;
+    margin-top: 5px;
+
+}
+.right1{
+
+    height:48%;
+    border-bottom: 1px solid aliceblue;
+
+}
+.right2{
+
+    height:48%;
+
+}
+html,body{
+    height:100%
+
+}
+
+body{
+    margin: 0px;
+}
+#newstop{
+    border-radius:5px 5px 5px 5px;
+    background-color: cornflowerblue;
+    font-family: "Microsoft YaHei UI";
+    font-size: 25px;
+    color: #2B2E33;
+    height:6%;
+    margin-left: 10px;
+    margin-right: 15px;
+    padding-top: 10px;
+    padding-left: 50px;
+}
+#newsblock{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 15px;
+    border: 2px solid #D5D5D5;
+    height:87%;
+}
+
+#noticetop{
+    border-radius:5px 5px 5px 5px;
+    background-color: cornflowerblue;
+    font-family: "Microsoft YaHei UI";
+    font-size: 25px;
+    color: #2B2E33;
+    height:13%;
+    margin-left: 10px;
+    margin-right: 15px;
+    padding-top: 10px;
+    padding-left: 50px;
+}
+#noticeblock{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: 2px solid #D5D5D5;
+    height:80%;
+}
