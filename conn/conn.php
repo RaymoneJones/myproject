@@ -33,7 +33,7 @@ class opmysql{
     //连接数据库
     function init_conn() {
         $this->conn=@mysqli_connect($this->host,$this->name,$this->pwd,$this->dBase);
-
+        return $this->conn;
     }
 
     //查询结果

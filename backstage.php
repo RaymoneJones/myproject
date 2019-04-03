@@ -60,7 +60,7 @@
                         <td>
                             <div class="topright">
                                <?php
-                                echo     "欢迎您：" .$_SESSION['username'];
+                                echo     "欢迎您：" .$_SESSION["username"];
                                 ?>
                             </div>
                         </td>
@@ -123,9 +123,10 @@
                             <span class="pull-right glyphicon glyphicon-chevron-toggle"></span>  
                         </a>
                         <ul  id="person" class="nav nav-list collapse secondmenu " style="height: 0px;">
-                            <li class="active"><a href="#" target="menuFrame"><i class="glyphicon glyphicon-user"></i>&nbsp;资料修改</a></li>
-                            <li><a href="#" target="menuFrame"><i class="glyphicon glyphicon-th-list"></i>&nbsp;密码修改</a></li>
-                         </ul> 
+<!--                            <li class="active"><a href="#" target="menuFrame"><i class="glyphicon glyphicon-user"></i>&nbsp;资料修改</a></li>-->
+                            <li class="active"><a href="PersonalInformation.php" target="menuFrame"><i class="glyphicon glyphicon-user"></i>&nbsp;个人信息</a></li>
+                            <li><a href="ModifyInformation.php" target="menuFrame"><i class="glyphicon glyphicon-th-list"></i>&nbsp;资料修改</a></li>
+                            <li><a href="ModifyPassword.php" target="menuFrame"><i class="glyphicon glyphicon-th-list"></i>&nbsp;密码修改</a></li>                         </ul>
                     </li>
 
                 </ul>

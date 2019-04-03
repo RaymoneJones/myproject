@@ -63,7 +63,7 @@ include("./conn/conn.php")
 
             <div class="right2" style="margin-top: 2px">
                 <div id="noticetop">
-                    通知公告
+                    待定修改区域
                     <div style="float: right;font-size:15px;margin-top:15px">
                         <a href="#">更多>>>></a>
                     </div>
