@@ -132,7 +132,7 @@
                 </ul>
             </div>
             <div class="col-md-10">
-                <iframe id="menuFrame" onload="changeFrameHeight(this)" name="menuFrame" src="home.php" width="100%" height="auto"  float:"left" frameborder="0" scrolling="no">
+                <iframe id="menuFrame" onload="changeFrameHeight(this)" name="menuFrame" src="home.php" width="100%" height="auto"  style="float:"left" "frameborder="0" scrolling="no">
                 </iframe>
             </div>
 
