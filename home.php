@@ -7,6 +7,8 @@ include("./conn/conn.php")
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="css/home.css">
+
+    <script type="text/javascript" src="js/solar_lunar.js"></script>
     <title></title>
 
 </head>
@@ -70,17 +72,7 @@ include("./conn/conn.php")
                 </div>
                 <div id="noticeblock">
                     <ul>
-                        <?php
-                        $con=mysqli_connect("localhost","root","123456","test");
-                        $sql="select * from tb_pcard  order by pcard_id desc limit 10";
-                        $result=mysqli_query($con,$sql);
-                        $num=10;
-                        if($num--){
-                            while($row=$result->fetch_assoc()){
-                                echo '<li><a class="tt" target="_blank" href="#">'.$row['pcard_subject'].'</a></li>';
-                            }
-                        }
-                        ?>
+                        <script src="js/calendartable.js" type="text/javascript"></script>
                     </ul>
                 </div>
             </div>
