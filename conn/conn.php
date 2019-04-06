@@ -10,7 +10,7 @@ class opmysql{
     private $conn = '';
     private $result = '';
     private $msg = '';
-    private $fields;
+//    private $fields;
     private $fieldsNum = 0;
     private $rowsNum = 0;
     private $rowsRst = '';
