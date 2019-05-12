@@ -36,6 +36,7 @@ if(isset($_GET["type"])){ //判断所需要的参数是否存在
 
 ?>
 <div id="myTabContent" class="tab-content">
+    <!--    部门begin-->
     <div class="tab-pane fade in active" id="first">
         <div>
             <h2>部门简介</h2>
@@ -55,7 +56,7 @@ if(isset($_GET["type"])){ //判断所需要的参数是否存在
                 </thead>
                 <tbody>
                 <?php
-                $k=5;
+                $k=3;
                 $sql="select * from tb_user where user_branch='后勤'";
                 $row=$conne->getRowsArray($sql);
                 $ber=$conne->getRowsNum($sql);
@@ -85,259 +86,1137 @@ if(isset($_GET["type"])){ //判断所需要的参数是否存在
 
         </div>
     </div>
+
+<!--    办公用品-->
     <div class="tab-pane fade" id="second">
         <ul id="myOrder" class="nav nav-tabs">
-            <li class="active"><a href="#first_s" data-toggle="tab">全部</a></li>
-            <li><a href="#second_s" data-toggle="tab">已确定</a></li>
-            <li><a href="#third_s" data-toggle="tab">待发货</a></li>
-            <li><a href="#forth_s" data-toggle="tab">待确定</a></li>
-            <li><a href="#fifth_s" data-toggle="tab">个人处理</a></li>
-            <li><a href="#sixth_s" data-toggle="tab">新订单</a></li>
+            <li class="active"><a href="#second1" data-toggle="tab">全部</a></li>
+            <li><a href="#second2" data-toggle="tab">计算机</a></li>
+            <li><a href="#second3" data-toggle="tab">打印机</a></li>
+            <li><a href="#second4" data-toggle="tab">复印机</a></li>
+            <li><a href="#second5" data-toggle="tab">车辆</a></li>
+            <li><a href="#second6" data-toggle="tab">消耗品</a></li>
         </ul>
         <div id="myTabContent2" class="tab-content">
-            <div class="tab-pane fade in active" id="first_s">
+            <div class="tab-pane fade in active" id="second1">
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>订单号</th><th>产品</th><th>付款日期</th><th>状态</th><th>负责人</th>
+                        <th>编号</th><th>物品名称</th><th>购入日期</th><th>状态</th><th>负责人</th><th>类别</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-                    $j=9;
-                    $sql2="select * from tb_order";
-                    $row2=$conne1->getRowsArray($sql2);
-                    $ber2=$conne1->getRowsNum($sql2);
-                    $total_page2=ceil($ber2/$j);
-                    if(isset($_GET["id2"])){ //判断所需要的参数是否存在
-                        $now2 = $_GET['id2'];
-                    } else{
-                        $now2=1;
-                    }
-                    for($i=0;$i<$j;$i++){
-                        echo '<tr><td>'. $row2[$now2*$j-$j+$i]['id'] .'</td><td>'. $row2[$now2*$j-$j+$i]['product']
-                            .'</td><td>'. $row2[$now2*$j-$j+$i]['ordertime'] .'</td><td>'. $row2[$now2*$j-$j+$i]['state']
-                            .'</td><td>'. $row2[$now2*$j-$j+$i]['charge'] .'</td></tr>';
-                    }
-
-                    ?>
-                    </tbody>
-                </table>
-                <?php
-                $page=0;
-                echo '<ul class="pagination">
-                                   ';
-                while($page++<$total_page2){
-                    echo '<li><a href="'.$_SERVER['PHP_SELF'].'?type=2&&id2='.$page.'">'.$page.'</a></li>';
-                }
-                echo '</ul>';
-                ?>
-
-            </div>
-            <div class="tab-pane fade" id="second_s">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>订单号</th><th>产品</th><th>付款日期</th><th>状态</th><th>负责人</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    for($i=0;$i<$ber2;$i++){
-                        if($row2[$i]['state']=='已确定'){
-                            $row22[]=$row2[$i];
+                    $con=mysqli_connect("localhost","root","123456","test");
+                    $sql="select * from tb_office";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td><td>'.$row['class'].'</td>';
                         }
                     }
-                    $ber22=count($row22);
-                    $total_page22=ceil($ber22/$j);
-                    if(isset($_GET["id22"])){ //判断所需要的参数是否存在
-                        $now22 = $_GET['id22'];
-                    } else{
-                        $now22=1;
-                    }
-                    for($i=0;$i<$j;$i++){
-                        echo '<tr><td>'. $row22[$now22*$j-$j+$i]['id'] .'</td><td>'. $row22[$now22*$j-$j+$i]['product']
-                            .'</td><td>'. $row22[$now22*$j-$j+$i]['ordertime'] .'</td><td>'. $row22[$now22*$j-$j+$i]['state']
-                            .'</td><td>'. $row22[$now22*$j-$j+$i]['charge'] .'</td></tr>';
-                    }
 
                     ?>
+
                     </tbody>
                 </table>
-                <?php
-                $page=0;
-                echo '<ul class="pagination">
-                                   ';
-                while($page++<$total_page22){
-                    echo '<li><a href="'.$_SERVER['PHP_SELF'].'?type=22&&id22='.$page.'">'.$page.'</a></li>';
-                }
-                echo '</ul>';
-                ?>
-
 
 
             </div>
-            <div class="tab-pane fade" id="third_s">
+            <div class="tab-pane fade" id="second2">
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>订单号</th><th>产品</th><th>付款日期</th><th>状态</th><th>负责人</th>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-                    for($i=0;$i<$ber2;$i++){
-                        if($row2[$i]['state']=='待发货'){
-                            $row23[]=$row2[$i];
+                    $sql="select no,name,date,state,PIC from tb_office where class='计算机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
                         }
-                    }
-                    $ber23=count($row23);
-                    $total_page23=ceil($ber23/$j);
-                    if(isset($_GET["id23"])){ //判断所需要的参数是否存在
-                        $now23 = $_GET['id23'];
-                    } else{
-                        $now23=1;
-                    }
-                    for($i=0;$i<$j;$i++){
-                        echo '<tr><td>'. $row23[$now23*$j-$j+$i]['id'] .'</td><td>'. $row23[$now23*$j-$j+$i]['product']
-                            .'</td><td>'. $row23[$now23*$j-$j+$i]['ordertime'] .'</td><td>'. $row23[$now23*$j-$j+$i]['state']
-                            .'</td><td>'. $row23[$now23*$j-$j+$i]['charge'] .'</td></tr>';
                     }
 
                     ?>
                     </tbody>
                 </table>
-                <?php
-                $page=0;
-                echo '<ul class="pagination">
-                                   ';
-                while($page++<$total_page23){
-                    echo '<li><a href="'.$_SERVER['PHP_SELF'].'?type=23&&id23='.$page.'">'.$page.'</a></li>';
-                }
-                echo '</ul>';
-                ?>
-
-
-
             </div>
-            <div class="tab-pane fade" id="forth_s">
+            <div class="tab-pane fade" id="second3">
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>订单号</th><th>产品</th><th>付款日期</th><th>状态</th><th>负责人</th>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-                    for($i=0;$i<$ber2;$i++){
-                        if($row2[$i]['state']=='待确定'){
-                            $row24[]=$row2[$i];
+                    $sql="select no,name,date,state,PIC from tb_office where class='打印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
                         }
-                    }
-                    $ber24=count($row24);
-                    $total_page24=ceil($ber24/$j);
-                    if(isset($_GET["id24"])){ //判断所需要的参数是否存在
-                        $now24 = $_GET['id24'];
-                    } else{
-                        $now24=1;
-                    }
-                    for($i=0;$i<$j;$i++){
-                        echo '<tr><td>'. $row24[$now24*$j-$j+$i]['id'] .'</td><td>'. $row24[$now24*$j-$j+$i]['product']
-                            .'</td><td>'. $row24[$now24*$j-$j+$i]['ordertime'] .'</td><td>'. $row24[$now24*$j-$j+$i]['state']
-                            .'</td><td>'. $row24[$now24*$j-$j+$i]['charge'] .'</td></tr>';
                     }
 
                     ?>
                     </tbody>
                 </table>
-                <?php
-                $page=0;
-                echo '<ul class="pagination">
-                                   ';
-                while($page++<$total_page24){
-                    echo '<li><a href="'.$_SERVER['PHP_SELF'].'?type=24&&id24='.$page.'">'.$page.'</a></li>';
-                }
-                echo '</ul>';
-                ?>
 
 
 
             </div>
-            <div class="tab-pane fade" id="fifth_s">
+            <div class="tab-pane fade" id="second4">
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>订单号</th><th>产品</th><th>付款日期</th><th>状态</th><th>操作</th>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-                    for($i=0;$i<$ber2;$i++){
-                        if(($row2[$i]['state']=='待确定'||$row2[$i]['state']=='待发货')&&$row2[$i]['charge']==$_SESSION["username"]){
-                            $row25[]=$row2[$i];
+                    $sql="select no,name,date,state,PIC from tb_office where class='复印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
                         }
-                    }
-                    $ber25=count($row25);
-                    $total_page25=ceil($ber25/$j);
-                    if(isset($_GET["id25"])){ //判断所需要的参数是否存在
-                        $now25 = $_GET['id25'];
-                    } else{
-                        $now25=1;
-                    }
-                    for($i=0;$i<$j;$i++){
-                        echo '<tr><td>'. $row25[$now25*$j-$j+$i]['id'] .'</td><td>'. $row25[$now25*$j-$j+$i]['product']
-                            .'</td><td>'. $row25[$now25*$j-$j+$i]['ordertime'] .'</td><td>'. $row25[$now25*$j-$j+$i]['state']
-                            .'</td><td>'. $row25[$now25*$j-$j+$i]['charge'] .'</td></tr>';
                     }
 
                     ?>
                     </tbody>
                 </table>
-                <?php
-                $page=0;
-                echo '<ul class="pagination">
-                                   ';
-                while($page++<$total_page25){
-                    echo '<li><a href="'.$_SERVER['PHP_SELF'].'?type=25&&id25='.$page.'">'.$page.'</a></li>';
-                }
-                echo '</ul>';
-                ?>
+            </div>
+            <div class="tab-pane fade" id="second5">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='车辆'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
 
-
+                    ?>
+                    </tbody>
+                </table>
 
             </div>
-            <div class="tab-pane fade" id="sixth_s">
-                <h1>新订单</h1>
-                <form id="order-form" action="order.php" role="form" method="post">
-                    <div class="form-group">
-                        <label for="orderid">订单号</label>
-                        <input type="text" class="form-control" id="orderid"  name="orderid"
-                               placeholder="请输入订单号">
-                    </div>
-                    <div class="form-group">
-                        <label for="product">产品</label>
-                        <input type="text" class="form-control" id="product" name="product"
-                               placeholder="请输入产品名称">
-                    </div>
-                    <div class="form-group">
-                        <label for="ordertime">付款日期</label>
-                        <input type="text" class="form-control" id="ordertime" name="ordertime"
-                               placeholder="请输入付款日期">
-                    </div>
-                    <button id="order" type="submit" class="btn btn-default">提交</button>
-                </form>
+            <div class="tab-pane fade" id="second6">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='消耗品'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
 
             </div>
         </div>
     </div>
+
+<!--    申请-->
     <div class="tab-pane fade" id="third">
-        <h1>活动介绍</h1>
+        <ul id="myOrder" class="nav nav-tabs">
+            <li class="active"><a href="#second1" data-toggle="tab">全部</a></li>
+            <li><a href="#second2" data-toggle="tab">计算机</a></li>
+            <li><a href="#second3" data-toggle="tab">打印机</a></li>
+            <li><a href="#second4" data-toggle="tab">复印机</a></li>
+            <li><a href="#second5" data-toggle="tab">车辆</a></li>
+            <li><a href="#second6" data-toggle="tab">消耗品</a></li>
+        </ul>
+        <div id="myTabContent2" class="tab-content">
+            <div class="tab-pane fade in active" id="second1">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>物品名称</th><th>购入日期</th><th>状态</th><th>负责人</th><th>类别</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $con=mysqli_connect("localhost","root","123456","test");
+                    $sql="select * from tb_office";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td><td>'.$row['class'].'</td>';
+                        }
+                    }
+
+                    ?>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="tab-pane fade" id="second2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='计算机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="second3">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='打印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+            <div class="tab-pane fade" id="second4">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='复印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="second5">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='车辆'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="tab-pane fade" id="second6">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='消耗品'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
     </div>
+
+<!--    报销-->
     <div class="tab-pane fade" id="forth">
-        <h1>产品介绍</h1>
+        <ul id="myOrder" class="nav nav-tabs">
+            <li class="active"><a href="#second1" data-toggle="tab">全部</a></li>
+            <li><a href="#second2" data-toggle="tab">计算机</a></li>
+            <li><a href="#second3" data-toggle="tab">打印机</a></li>
+            <li><a href="#second4" data-toggle="tab">复印机</a></li>
+            <li><a href="#second5" data-toggle="tab">车辆</a></li>
+            <li><a href="#second6" data-toggle="tab">消耗品</a></li>
+        </ul>
+        <div id="myTabContent2" class="tab-content">
+            <div class="tab-pane fade in active" id="second1">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>物品名称</th><th>购入日期</th><th>状态</th><th>负责人</th><th>类别</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $con=mysqli_connect("localhost","root","123456","test");
+                    $sql="select * from tb_office";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td><td>'.$row['class'].'</td>';
+                        }
+                    }
+
+                    ?>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="tab-pane fade" id="second2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='计算机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="second3">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='打印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+            <div class="tab-pane fade" id="second4">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='复印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="second5">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='车辆'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="tab-pane fade" id="second6">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='消耗品'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+<!--    公寓-->
+    <div class="tab-pane fade" id="fifth">
+        <ul id="myOrder" class="nav nav-tabs">
+            <li class="active"><a href="#second1" data-toggle="tab">全部</a></li>
+            <li><a href="#second2" data-toggle="tab">计算机</a></li>
+            <li><a href="#second3" data-toggle="tab">打印机</a></li>
+            <li><a href="#second4" data-toggle="tab">复印机</a></li>
+            <li><a href="#second5" data-toggle="tab">车辆</a></li>
+            <li><a href="#second6" data-toggle="tab">消耗品</a></li>
+        </ul>
+        <div id="myTabContent2" class="tab-content">
+            <div class="tab-pane fade in active" id="second1">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>物品名称</th><th>购入日期</th><th>状态</th><th>负责人</th><th>类别</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $con=mysqli_connect("localhost","root","123456","test");
+                    $sql="select * from tb_office";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td><td>'.$row['class'].'</td>';
+                        }
+                    }
+
+                    ?>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="tab-pane fade" id="second2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='计算机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="second3">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='打印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+            <div class="tab-pane fade" id="second4">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='复印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="second5">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='车辆'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="tab-pane fade" id="second6">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='消耗品'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+<!--    会议-->
+    <div class="tab-pane fade" id="sixth">
+        <ul id="myOrder" class="nav nav-tabs">
+            <li class="active"><a href="#second1" data-toggle="tab">全部</a></li>
+            <li><a href="#second2" data-toggle="tab">计算机</a></li>
+            <li><a href="#second3" data-toggle="tab">打印机</a></li>
+            <li><a href="#second4" data-toggle="tab">复印机</a></li>
+            <li><a href="#second5" data-toggle="tab">车辆</a></li>
+            <li><a href="#second6" data-toggle="tab">消耗品</a></li>
+        </ul>
+        <div id="myTabContent2" class="tab-content">
+            <div class="tab-pane fade in active" id="second1">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>物品名称</th><th>购入日期</th><th>状态</th><th>负责人</th><th>类别</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $con=mysqli_connect("localhost","root","123456","test");
+                    $sql="select * from tb_office";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td><td>'.$row['class'].'</td>';
+                        }
+                    }
+
+                    ?>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="tab-pane fade" id="second2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='计算机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="second3">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='打印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+            <div class="tab-pane fade" id="second4">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='复印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="second5">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='车辆'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="tab-pane fade" id="second6">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='消耗品'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+<!--    档案-->
+    <div class="tab-pane fade" id="seventh">
+        <ul id="myOrder" class="nav nav-tabs">
+            <li class="active"><a href="#second1" data-toggle="tab">全部</a></li>
+            <li><a href="#second2" data-toggle="tab">计算机</a></li>
+            <li><a href="#second3" data-toggle="tab">打印机</a></li>
+            <li><a href="#second4" data-toggle="tab">复印机</a></li>
+            <li><a href="#second5" data-toggle="tab">车辆</a></li>
+            <li><a href="#second6" data-toggle="tab">消耗品</a></li>
+        </ul>
+        <div id="myTabContent2" class="tab-content">
+            <div class="tab-pane fade in active" id="second1">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>物品名称</th><th>购入日期</th><th>状态</th><th>负责人</th><th>类别</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $con=mysqli_connect("localhost","root","123456","test");
+                    $sql="select * from tb_office";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td><td>'.$row['class'].'</td>';
+                        }
+                    }
+
+                    ?>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="tab-pane fade" id="second2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='计算机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="second3">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='打印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+            <div class="tab-pane fade" id="second4">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='复印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="second5">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='车辆'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="tab-pane fade" id="second6">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='消耗品'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+<!--    其他-->
+    <div class="tab-pane fade" id="eighth">
+        <ul id="myOrder" class="nav nav-tabs">
+            <li class="active"><a href="#second1" data-toggle="tab">全部</a></li>
+            <li><a href="#second2" data-toggle="tab">计算机</a></li>
+            <li><a href="#second3" data-toggle="tab">打印机</a></li>
+            <li><a href="#second4" data-toggle="tab">复印机</a></li>
+            <li><a href="#second5" data-toggle="tab">车辆</a></li>
+            <li><a href="#second6" data-toggle="tab">消耗品</a></li>
+        </ul>
+        <div id="myTabContent2" class="tab-content">
+            <div class="tab-pane fade in active" id="second1">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>物品名称</th><th>购入日期</th><th>状态</th><th>负责人</th><th>类别</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $con=mysqli_connect("localhost","root","123456","test");
+                    $sql="select * from tb_office";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td><td>'.$row['class'].'</td>';
+                        }
+                    }
+
+                    ?>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="tab-pane fade" id="second2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='计算机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="second3">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='打印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+            <div class="tab-pane fade" id="second4">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='复印机'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="second5">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='车辆'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="tab-pane fade" id="second6">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th><th>名称</th><th>购入日期</th><th>状态</th><th>负责人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql="select no,name,date,state,PIC from tb_office where class='消耗品'";
+                    $result=mysqli_query($con,$sql);
+                    $num=10;
+                    if($num--){
+                        while($row=$result->fetch_assoc()){
+                            echo '<tr><td>'.$row['no'].'</td><td>'.$row['name'].'</td><td>'.$row['date'].'</td><td>'.$row['state'].'</td>
+                                    <td>'.$row['PIC'].'</td>';
+                        }
+                    }
+
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
     </div>
 
 </div>
+
+
 <script>
     $("#order").click(function(){
 
