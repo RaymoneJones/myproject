@@ -10,7 +10,7 @@ class opmysql{
     private $conn = '';
     private $result = '';
     private $msg = '';
-//    private $fields;
+    private $fields;
     private $fieldsNum = 0;
     private $rowsNum = 0;
     private $rowsRst = '';
@@ -33,7 +33,7 @@ class opmysql{
     //连接数据库
     function init_conn() {
         $this->conn=@mysqli_connect($this->host,$this->name,$this->pwd,$this->dBase);
-        return $this->conn;
+
     }
 
     //查询结果
@@ -58,7 +58,7 @@ class opmysql{
     function getRowsRst($sql) {
         $this->mysqli_query_rst($sql);
         if(mysqli_errno($this->conn) == 0){
-            $this->rowsRst = mysqli_fetch_array($this->result,MYSQL_ASSOC);
+            $this->rowsRst = mysqli_fetch_array($this->result,MYSQLI_ASSOC);
             return $this->rowsRst;
         }else{
             return '';
@@ -69,7 +69,7 @@ class opmysql{
     function getRowsArray($sql){
         $this->mysqli_query_rst($sql);
         if(mysqli_errno($this->conn) == 0){
-            while($row = mysqli_fetch_array($this->result,MYSQL_ASSOC)){
+            while($row = mysqli_fetch_array($this->result,MYSQLI_ASSOC)){
                 $this->rowsArray[] = $row;
             }
             return $this->rowsArray;
@@ -97,7 +97,7 @@ class opmysql{
             $this->init_conn();
         }
         @mysqli_query($this->conn,$sql);
-        $this->rowsNum = @mysqli_affected_rows();
+        $this->rowsNum = @mysqli_affected_rows($this->conn);
         if(mysqli_errno($this->conn)== 0){
             return $this->rowsNum;
         }else{
@@ -131,4 +131,6 @@ class opmysql{
 }
 
 $conne = new opmysql();
+$conne1 = new opmysql();
+$conne2 = new opmysql();
 ?>

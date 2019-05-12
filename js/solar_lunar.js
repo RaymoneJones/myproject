@@ -1042,8 +1042,8 @@ var calendar = {
     }
 
 };
-
-
+var tt=calendar.Animals;
+document.getElementById("ttt").innerHTML =  tt;//在div中写入时间
 // /**公历年月日转农历数据 返回json**/
 //
 // calendar.solar2lunar(1987,11,01);

@@ -14,6 +14,7 @@ include("./conn/conn.php")
 </head>
 
 <body >
+
     <div style="height: 100%">
         <div class="left" style="height:100%">
             <div id="newstop">
@@ -25,7 +26,7 @@ include("./conn/conn.php")
             <div id="newsblock">
                 <ul>
                     <?php
-                    $con=mysqli_connect("localhost","root","123456","test");
+                   $con=mysqli_connect("localhost","root","123456","test");
                     $sql="select title,time from tb_news  order by time desc limit 10";
                     $result=mysqli_query($con,$sql);
                     $num=10;
@@ -58,8 +59,10 @@ include("./conn/conn.php")
                                 echo '<li><a class="tt" target="_blank" href="#">'.$row['pcard_subject'].'</a></li>';
                             }
                         }
+
                         ?>
                     </ul>
+
                 </div>
             </div>
 
@@ -72,8 +75,27 @@ include("./conn/conn.php")
                 </div>
                 <div id="noticeblock">
                     <ul>
-                        <script src="js/calendartable.js" type="text/javascript"></script>
+<!--                        <script src="js/calendartable.js" type="text/javascript"></script>-->
+                        <?php
+                        $con=mysqli_connect("localhost","root","123456","test");
+                        $sql="select * from tb_user";
+                        $result=mysqli_query($con,$sql);
+                        $num=10;
+                        if($num--){
+                            while($row=$result->fetch_assoc()){
+                                echo "id：".$row['user_id']."<br>";
+                                echo "姓名：".$row['user_name']."<br>";
+                                echo "部门：".$row['user_branch']."<br>";
+                                echo "职务：".$row['user_job']."<br>";
+                                echo "手机号：".$row['user_tel']."<br>";
+                                echo "住址：".$row['user_address']."<br>";
+                            }
+                        }
+
+                        ?>
                     </ul>
+<!--                    <h id="ttt"></h>-->
+
                 </div>
             </div>
         </div>

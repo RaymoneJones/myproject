@@ -103,7 +103,7 @@
                              <span class="pull-right glyphicon glyphicon-chevron-toggle"></span>        
                         </a>
                         <ul  id="branch" class="nav nav-list collapse secondmenu " style="height: 0px;">
-                            <li class="active"><a href="#" target="menuFrame"><i class="glyphicon glyphicon-user"></i>&nbsp;个人部门</a></li>
+                            <li class="active"><a href="LogisticsManagementDepartment.php" target="menuFrame"><i class="glyphicon glyphicon-user"></i>&nbsp;个人部门</a></li>
                             <li><a href="#" target="menuFrame"><i class="glyphicon glyphicon-th-list"></i>&nbsp;所有部门</a></li>
                          </ul>   
                     </li>
