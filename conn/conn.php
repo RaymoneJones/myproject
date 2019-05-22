@@ -133,4 +133,6 @@ class opmysql{
 $conne = new opmysql();
 $conne1 = new opmysql();
 $conne2 = new opmysql();
+$conne3 = new opmysql();
+$conne4 = new opmysql();
 ?>
