@@ -1,6 +1,6 @@
-<?php
-session_start();		//启用session支持
-include("conn/conn.php");		//包含数据库文件
+ <?php
+    session_start();
+    include("conn/conn.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -10,58 +10,47 @@ include("conn/conn.php");		//包含数据库文件
 <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/consumer.css">
-    <script src="js/consumer.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="css/consumer.css">
+<script src="js/consumer.js" type="text/javascript"></script>
 </head>
-<!--
-<body>
-<div class="navbar navbar-duomi navbar-static-top" role="navigation" id="top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="backstage.php" id="logo">网上办公系统
-                </a>
-            </div>
-        </div>
-</div>
--->
 <body onload="getTime()" style="height: 100% width:100%">
-<div class="firstguidence" id="top">
-    <div>
-        <table>
-            <tr>
-                <td>
-                    <a href="consumer.php" >
-                        <img src="./images/first.png"   style="margin-left: 20px" width="150px" height="50px"/>
-                    </a>
-                </td>
-                <td>
-                    <h id="yuanjing">&nbsp;&nbsp;&nbsp;百度愿景：成为最懂用户，并能帮助人们成长的全球顶级高科技公司。</h>
+	<div class="firstguidence" id="top">
+			<div>
+                <table>
+                    <tr>
+                        <td>
+                            <a href="consumer.php" >
+                                <img src="./images/first.png"   style="margin-left: 20px" width="150px" height="50px"/>
+                            </a>
+                        </td>
+                        <td>
+                            <h id="yuanjing">&nbsp;&nbsp;&nbsp;百度愿景：成为最懂用户，并能帮助人们成长的全球顶级高科技公司。</h>
 
-                </td>
-                <td width="50px"></td>
-                <td>
-                    <div class="topright" id="time1" ></div>
-                </td>
-                <td width="50px"></td>
-                <td>
-                    <div class="topright">
-                        <?php
-                        echo     "欢迎您：" .$_SESSION["username"];
-                        ?>
-                    </div>
-                </td>
-                <td>
+                        </td>
+                        <td width="50px"></td>
+                        <td>
+                            <div class="topright" id="time1" ></div>
+                        </td>
+                        <td width="50px"></td>
+                        <td>
+                            <div class="topright">
+                               <?php
+                                echo     "欢迎您：" .$_SESSION["username"];
+                                ?>
+                            </div>
+                        </td>
+                        <td>
 
-                </td>
-                <td width="50px"></td>
-                <td>
-                    <a href="logout.php" />
-                    退出系统
-                </td>
-            </tr>
-        </table>
+                        </td>
+                        <td width="50px"></td>
+                        <td>
+                            <a href="logout.php" />
+                            退出系统
+                        </td>
+                    </tr>
+                </table>
+            </div>
     </div>
-</div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
@@ -87,13 +76,13 @@ include("conn/conn.php");		//包含数据库文件
                              <span class="pull-right glyphicon glyphicon-chevron-toggle"></span>        
                         </a>
                         <ul  id="branch" class="nav nav-list collapse secondmenu " style="height: 0px;">
-                            <li class="active"><a href="personalbranch.php" target="menuFrame"><i class="glyphicon glyphicon-user"></i>&nbsp;个人部门</a></li>
-                            <li><a href="allbranch.php" target="menuFrame"><i class="glyphicon glyphicon-th-list"></i>&nbsp;所有部门</a></li>
+                            <li class="active"><a href="#" target="menuFrame"><i class="glyphicon glyphicon-user"></i>&nbsp;个人部门</a></li>
+                            <li><a href="market.php" target="menuFrame"><i class="glyphicon glyphicon-th-list"></i>&nbsp;营销部门</a></li>
                          </ul>   
                     </li>
 
                     <li>
-                        <a href="personal.php" target="menuFrame">
+                        <a href="#" target="menuFrame">
                             <i class="glyphicon glyphicon-globe"></i>
                             个人事项
                             <!--<span class="label label-warning pull-right">5</span>--> 
@@ -107,16 +96,15 @@ include("conn/conn.php");		//包含数据库文件
                             <span class="pull-right glyphicon glyphicon-chevron-toggle"></span>  
                         </a>
                         <ul  id="person" class="nav nav-list collapse secondmenu " style="height: 0px;">
-                            <li class="active"><a href="PersonalInformation.php" target="menuFrame"><i class="glyphicon glyphicon-user"></i>&nbsp;个人信息</a></li>
-                            <li><a href="ModifyInformation.php" target="menuFrame"><i class="glyphicon glyphicon-th-list"></i>&nbsp;资料修改</a></li>
-                            <li><a href="ModifyPassword.php" target="menuFrame"><i class="glyphicon glyphicon-th-list"></i>&nbsp;密码修改</a></li>
+                            <li class="active"><a href="#" target="menuFrame"><i class="glyphicon glyphicon-user"></i>&nbsp;资料修改</a></li>
+                            <li><a href="#" target="menuFrame"><i class="glyphicon glyphicon-th-list"></i>&nbsp;密码修改</a></li>
                          </ul> 
                     </li>
 
                 </ul>
             </div>
             <div class="col-md-10">
-            	<iframe id="menuFrame" onload="changeFrameHeight(this)" name="menuFrame" src="homepage.php" width="100%" height="auto"  float:"left" frameborder="0" scrolling="yes">
+            	<iframe id="menuFrame" onload="changeFrameHeight(this)" name="menuFrame" src="homepage.php" width="100%" height="auto"  float:"left" frameborder="0" scrolling="no">
              	</iframe>
 			</div>
 
@@ -129,8 +117,7 @@ include("conn/conn.php");		//包含数据库文件
 </html>
 <script>
 function changeFrameHeight(that){
-
-        $(that).height(document.documentElement.clientHeight - document.getElementById( "top" ).offsetHeight-5);
+	$(that).height(document.documentElement.clientHeight - document.getElementById( "top" ).offsetHeight-5);
 }
 
 </script>

@@ -12,7 +12,6 @@ include("conn/conn.php");		//包含数据库文件
     <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/backstage.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-<!--    <script type="text/javascript" src="./js/index.js"></script>-->
 </head>
 
 <body>
@@ -45,8 +44,8 @@ include("conn/conn.php");		//包含数据库文件
             <div class="modal-body">
                 <form id="register-form" class="form-group" action="login.php" method="post">
                     <div class="form-group">
-                        <label for="">用户名</label>
-                        <input id="username" name="username" class="form-control" type="text" placeholder="" autofocus>
+                        <label for="">职工号</label>
+                        <input id="userid" name="userid" class="form-control" type="text" placeholder="" autofocus>
                     </div>
                     <div class="form-group">
                         <label for="">密码</label>
@@ -75,8 +74,8 @@ include("conn/conn.php");		//包含数据库文件
         formsub();
     });
     function formsub(){
-        if($("#username").val() == ""){
-            alert("用户名不能为空!")
+        if($("#userid").val() == ""){
+            alert("职工号不能为空!")
 
         }else if($("#password").val() ==""){
             alert("密码不能为空!")

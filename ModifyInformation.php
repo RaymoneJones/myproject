@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("conn/conn.php");
 ?>
 
@@ -8,34 +9,33 @@ include("conn/conn.php");
 
 <body>
 <form name = "information" method = "post" action = "InformationPage.php">
-     <!-- 职工号：
-      <input type = "text" name = "id">
-      <br><br>   -->
+     <div style="text-align:center;">
       姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：
-      <input type = "text" name = "name">
+      <input type = "text" name = "name" value = <?php echo $_SESSION["username"] ?>>
       <br><br>
      <!-- 密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：
       <input type = "text" name = "password">
       <br><br>-->
       部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门：
-      <input type = "text" name = "branch">   <!-- </html><?php echo $_SESSION["userbranch"] ?><html> -->
+      <input type = "text" align=" name = "branch" value = <?php echo $_SESSION["userbranch"] ?>>
       <br><br>
       工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作：
-      <input type = "text" name = "job">
+      <input type = "text" name = "job" value = <?php echo $_SESSION["userjob"] ?>>
       <br><br>
       性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
-      <input type = "text" name = "sex">
+      <input type = "text" name = "sex" value = <?php echo $_SESSION["usersex"] ?>>
       <br><br>
       电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：
-      <input type = "text" name = "tel">
+      <input type = "text" name = "tel" value = <?php echo $_SESSION["usertel"] ?>>
       <br><br>
       住&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
-      <input type = "text" name = "address">
+      <input type = "text" name = "address" value = <?php echo $_SESSION["useraddress"] ?>>
       <br><br>
       入职时间：
-      <input type = "text" name = "foundtime">
+      <input type = "text" name = "foundtime" value = <?php echo $_SESSION["userfoundtime"] ?>>
       <br><br>
       <input name = "submit" type = "submit" id = "submit" value = "修改">
+     </div>
 </form>
 
 </body>

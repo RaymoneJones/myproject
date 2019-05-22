@@ -8,7 +8,7 @@ include("conn/conn.php");
 <head></head>
 
 <body>
-<table>
+<table align="center">
     <tr>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;职工号：</td>
         <td></html> <?php echo $_SESSION["userid"] ?><html></td>
@@ -46,6 +46,5 @@ include("conn/conn.php");
         <td></html> <?php echo $_SESSION["userfoundtime"] ?><html></td>
     </tr>
 </table>
-
 </body>
 </html>

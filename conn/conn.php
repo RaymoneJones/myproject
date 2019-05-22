@@ -30,13 +30,13 @@ class opmysql{
             $this->dBase = $dBase;
     }
 
-    //è¿žæŽ¥æ•°æ®åº“
+    //Á¬½ÓÊý¾Ý¿â
     function init_conn() {
         $this->conn=@mysqli_connect($this->host,$this->name,$this->pwd,$this->dBase);
-
+        return $this->conn;     //ÎÒ¼ÓÁËÒ»¸ö·µ»ØÊý¾Ý¿âÁ¬½Ó
     }
 
-    //æŸ¥è¯¢ç»“æžœ
+    //²éÑ¯½á¹û
     function mysqli_query_rst($sql){
         if($this->conn == ''){
             $this->init_conn();
@@ -44,7 +44,7 @@ class opmysql{
         $this->result=@mysqli_query($this->conn,$sql);
     }
 
-    //è¿”å›žæŸ¥è¯¢è®°å½•æ•°
+    //·µ»Ø²éÑ¯¼ÇÂ¼Êý
     function getRowsNum($sql) {
         $this->mysqli_query_rst($sql);
         if(mysqli_errno($this->conn) == 0){
@@ -54,7 +54,7 @@ class opmysql{
         }
     }
 
-    //å°†æŸ¥è¯¢ç»“æžœè¾“å‡ºæˆä¸€ä¸ªæ•°ç»„å¹¶è¿”å›žï¼ˆå•æ¡è®°å½•ï¼‰
+    //½«²éÑ¯½á¹ûÊä³ö³ÉÒ»¸öÊý×é²¢·µ»Ø£¨µ¥Ìõ¼ÇÂ¼£©
     function getRowsRst($sql) {
         $this->mysqli_query_rst($sql);
         if(mysqli_errno($this->conn) == 0){
@@ -65,7 +65,7 @@ class opmysql{
         }
     }
 
-    //å°†æŸ¥è¯¢ç»“æžœè¾“å‡ºæˆä¸€ä¸ªå«å¤šæ¡è®°å½•çš„äºŒç»´æ•°ç»„å¹¶è¿”å›ž
+    //½«²éÑ¯½á¹ûÊä³ö³ÉÒ»¸öº¬¶àÌõ¼ÇÂ¼µÄ¶þÎ¬Êý×é²¢·µ»Ø
     function getRowsArray($sql){
         $this->mysqli_query_rst($sql);
         if(mysqli_errno($this->conn) == 0){
@@ -78,7 +78,7 @@ class opmysql{
         }
     }
 
-    //è¿”å›žæŸ¥è¯¢ç»“æžœçš„ç‰¹å®šå­—æ®µ
+    //·µ»Ø²éÑ¯½á¹ûµÄÌØ¶¨×Ö¶Î
     function getFields($sql,$num){
 
         $this->mysqli_query_rst($sql);
@@ -91,7 +91,7 @@ class opmysql{
         }
     }
 
-    //è¿”å›žå¢žã€åˆ ã€æ”¹è®°å½•æ•°ï¼Œç”¨æ¥åˆ¤æ–­æ“ä½œæ˜¯å¦æˆåŠŸ
+    //·µ»ØÔö¡¢É¾¡¢¸Ä¼ÇÂ¼Êý£¬ÓÃÀ´ÅÐ¶Ï²Ù×÷ÊÇ·ñ³É¹¦
     function uidRst($sql){
         if($this->conn == ''){
             $this->init_conn();
@@ -105,14 +105,14 @@ class opmysql{
         }
     }
 
-    //é”™è¯¯æç¤º
+    //´íÎóÌáÊ¾
     function msg_error(){
         //return $this->msg = $php_errormsg;
-        $this->msg = "é”™è¯¯";
+        $this->msg = "´íÎó";
         return $this->msg;
     }
 
-    //é‡Šæ”¾ç»“æžœé›†
+    //ÊÍ·Å½á¹û¼¯
     function close_rst(){
         mysqli_free_result($this->result);
         $this->msg = '';
@@ -122,7 +122,7 @@ class opmysql{
         $this->rowsArray = '';
     }
 
-    //å…³é—­æ•°æ®åº“
+    //¹Ø±ÕÊý¾Ý¿â
     function close_conn(){
         $this->close_rst();
         mysqli_close($this->conn);
@@ -133,4 +133,6 @@ class opmysql{
 $conne = new opmysql();
 $conne1 = new opmysql();
 $conne2 = new opmysql();
+$conne3 = new opmysql();
+$conne4 = new opmysql();
 ?>

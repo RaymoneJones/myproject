@@ -9,6 +9,7 @@ include("conn/conn.php");
 
 <body>
 <form name = "information" method = "post" action = "PasswordPage.php">
+    <div style="text-align:center;">
     请输入旧密码：
     <input type = "text" name = "OldPassword">
     <br><br>
@@ -19,6 +20,7 @@ include("conn/conn.php");
     <input type = "text" name = "NewPassword2">
     <br><br>
     <input name = "submit" type = "submit" id = "submit" value = "确认修改">
+    </div>
 </form>
 </body>
 </html>
