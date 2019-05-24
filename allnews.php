@@ -10,7 +10,7 @@ include("conn/conn.php");
 <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>   <!--  -->
 <!-- 引入中文语言包 -->
 <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>  <!--  -->
-
+<body background="beijing.jpg">
 <ul id="myTabP" class="nav nav-tabs">
     <li class="active"><a href="#firstP" data-toggle="tab">新闻动态</a></li>
     <li><a href="#secondP" data-toggle="tab">通知公告</a></li>
@@ -25,7 +25,7 @@ include("conn/conn.php");
         </table>
     </div>
 </div>
-
+</body>
 
 <script>
     $('#matter_table1').bootstrapTable({

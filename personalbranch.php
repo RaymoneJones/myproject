@@ -10,5 +10,3 @@ else if($_SESSION["userbranch"] == "后勤部")
     echo "<script>window.location.href = 'houqin.php';</script>";
 else if($_SESSION["userbranch"] == "营销中心")
     echo "<script>window.location.href = 'market.php';</script>";
-else if($_SESSION["userbranch"] == "研发中心")
-    echo "<script>window.location.href = 'yanfa.php';</script>";

@@ -19,6 +19,8 @@ if(isset($_POST['orderid'])&&isset($_POST['product']))	{
 }else if(isset($_POST['matterreceive'])&&isset($_POST['mattercontent']))	{
     if($_POST['matterreceive']==""||$_POST['mattercontent']==""){
         echo "<script>alert('内容不能为空');window.location.href='matter.php?type=2';</script>";
+    }else if(!is_numeric($_POST["matterreceive"]) || strlen($_POST["matterreceive"])!=9) {
+        echo "<script>alert('接收者的职工号只能为9位数字');window.location.href='matter.php?type=2';</script>";
     }else{
         $sql = "INSERT INTO tb_matter ".
             "(matter_title,matter_publish,matter_receive,matter_content,matter_state,matter_assess) ".

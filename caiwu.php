@@ -10,42 +10,56 @@ include("conn/conn.php");
     <title>无标题文档</title>
     <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <style>
+        .cc{
+            margin: 0px 0px 0px 600px;
+        }
+        .cd{
+            height: 40px;
+        }
+        .ce{
+            margin: 0px 50px 0px 50px;
+        }
+
+    </style>
 </head>
 
 <body background="beijing.jpg">
+
 
 <?php
 if(@!is_null($_GET['trans_data'])) {
     $_SESSION['modify_id'] = $_GET['trans_data'];
     // echo $_SESSION["modify_id"];
+    mysqli_query("set names utf8");
 }
 ?>
 
-<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="information" enctype="multipart/form-data">
-    <table width="405">
-        <tr>
-            <td width="103" align="right">事件id：</td>
-            <td width="144" height="25"><input name="id" type="text" id="id" size="20" maxlength="20" > </td>
+<form  action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="information" enctype="multipart/form-data">
+    <table class="cc"  >
+        <tr class="cd">
+            <th width="100" >事件id：</th>
+            <th width="144" height="25" ><input name="id" type="text" id="id" size="20" maxlength="20" > </th>
         </tr>
-        <tr>
-            <td width="103" align="right">事件时间：</td>
-            <td width="144" height="25"><input name="time" type="text" id="time" size="20" maxlength="20"></td>
+        <tr class="cd">
+            <th width="103" >事件时间：</th>
+            <th width="144" height="25" ><input name="time" type="text" id="time" size="20" maxlength="20"></th>
         </tr>
-        <tr>
-            <td width="103" align="right">事件内容：</td>
-            <td width="144" height="25"><input name="name" type="text" id="name" size="20" maxlength="100"></td>
+        <tr class="cd">
+            <th width="103" >事件内容：</th>
+            <th width="144" height="25"><input name="name" type="text" id="name" size="20" maxlength="100"></th>
         </tr>
-        <tr>
-            <td width="103" align="right">事件开销：</td>
-            <td width="144" height="25"><input name="money" type="text" id="money" size="20" maxlength="20"></td>
+        <tr class="cd">
+            <th width="103" >事件开销：</th>
+            <th width="144" height="25"><input name="money" type="text" id="money" size="20" maxlength="20"></th>
         </tr>
-        <tr>
-            <td width="103" align="right">事件部门：</td>
-            <td width="144" height="25"><input name="depart" type="text" id="depart" size="20" maxlength="100"></td>
+        <tr class="cd">
+            <th width="103" >事件部门：</th>
+            <th width="144" height="25"><input name="depart" type="text" id="depart" size="20" maxlength="100"></th>
         </tr>
-        <tr>
-            <td width="103" align="right">负责人：</td>
-            <td width="144" height="25"><input name="user" type="text" id="user" size="20" maxlength="100"></td>
+        <tr class="cd">
+            <th width="103" >负责人：</th>
+            <th width="144" height="25"><input name="user" type="text" id="user" size="20" maxlength="100"></th>
         </tr>
         <!--<tr>
             <td width="103" align="right">负责人id：</td>
@@ -63,15 +77,15 @@ if(@!is_null($_GET['trans_data'])) {
     </table>
     <br>
 
-    <input type="submit" name="submit" id = "add" value="添加">
-    <input type="submit" name="submit" id = "delete" value="删除">
-    <input type="submit" name="submit" id = "find" value="查找">
-    <input type="submit" name="submit" id = "modify" value="修改">
+    <input class="ce" style="width: 7% ;height:50px;margin: 80px 80px 0px 350px" type="submit" name="submit" id = "add" value="添加">
+    <input class="ce" style="width: 7% ;height:50px"type="submit" name="submit" id = "delete" value="删除">
+    <input class="ce" style="width: 7% ;height:50px"type="submit" name="submit" id = "find" value="查找">
+    <input class="ce" style="width: 7% ;height:50px"type="submit" name="submit" id = "modify" value="修改">
     <br><br>
 </form>
 
 
-<table id = "infor" width = "800" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#990000">
+<table style="margin: 60px 0px 0px 350px" id = "infor" width = "800" border="0" align="center" cellpadding="10" cellspacing="1" bgcolor="#990000">
     <tr>
         <td width="100" align="center" bgcolor="#FFFFFF" class="STYLE4">事件id</td>
         <td width="150" align="center" bgcolor="#FFFFFF" class="STYLE4">事件时间</td>
@@ -79,6 +93,7 @@ if(@!is_null($_GET['trans_data'])) {
         <td width="119" align="center" bgcolor="#FFFFFF" class="STYLE4">事件开销</td>
         <td width="169" align="center" bgcolor="#FFFFFF" class="STYLE4">事件部门</td>
         <td width="119" align="center" bgcolor="#FFFFFF" class="STYLE4">负责人</td>
+        <td width="119" align="center" bgcolor="#FFFFFF" class="STYLE4">是否操作</td>
         <!--<td width="150" align="center" bgcolor="#FFFFFF" class="STYLE4">负责人账号</td>
         <td width="150" align="center" bgcolor="#FFFFFF" class="STYLE4">负责人电话</td>
         <td width="282" height="25" align="center" bgcolor="#FFFFFF" class="STYLE4">负责人地址</td>-->
@@ -90,10 +105,65 @@ if(@!is_null($_GET['trans_data'])) {
     //echo $val;
     if(isset($_POST['submit'])) {
         if($_REQUEST['submit'] == "添加") {
-            if($_POST["id"] == "" && $_POST["time"] == "" && $_POST["name"] == "" && $_POST["money"] == "" && $_POST["depart"] == "" && $_POST["user"] == "" /*&&
+            $sqt = mysqli_query($conne->init_conn(),"select *
+               from caiwu
+               where id ='". $_POST['id'] ."'
+                     ");
+            $check=mysqli_num_rows($sqt);
+            /* $userid=$_POST["id"];
+             $sqt="select id from caiwu where id='$userid'";
+             $que=mysql_query($sqt);
+             $row=mysql_num_rows($que);*/
+            /*$check=$_POST["id"];
+             $str="select count(*) from register where username="."'"."$check"."'";
+             $result=mysqli_query($str);
+             $pass=mysqli_fetch_row($result);
+             $pa=$pass[0];*/
+            if($_POST["id"] == "" /*|| $_POST["time"] == "" || $_POST["name"] == "" || $_POST["money"] == "" || $_POST["depart"] == "" || $_POST["user"] == ""*/ /*&&
                 $_POST["address"] == "" && $_POST["foundtime"] == "" && $_POST["tel"] == "" */){
-                echo "<script>alert('输入为空，请输入您想要添加的信息');</script>";
-            }else {
+                echo "<script>alert('事件id不能为空，请输入事件id');</script>";
+            }
+            else if($_POST["time"] == "" /*|| $_POST["time"] == "" || $_POST["name"] == "" || $_POST["money"] == "" || $_POST["depart"] == "" || $_POST["user"] == ""*/ /*&&
+                $_POST["address"] == "" && $_POST["foundtime"] == "" && $_POST["tel"] == "" */){
+                echo "<script>alert('时间不能为空，请输入时间');</script>";
+            }
+            else if($_POST["name"] == "" /*|| $_POST["time"] == "" || $_POST["name"] == "" || $_POST["money"] == "" || $_POST["depart"] == "" || $_POST["user"] == ""*/ /*&&
+                $_POST["address"] == "" && $_POST["foundtime"] == "" && $_POST["tel"] == "" */){
+                echo "<script>alert('内容不能为空，请输入事件内容');</script>";
+            }
+            else if($_POST["money"] == "" /*|| $_POST["time"] == "" || $_POST["name"] == "" || $_POST["money"] == "" || $_POST["depart"] == "" || $_POST["user"] == ""*/ /*&&
+                $_POST["address"] == "" && $_POST["foundtime"] == "" && $_POST["tel"] == "" */){
+                echo "<script>alert('开销不能为空，请输入开销');</script>";
+            }
+            else if($_POST["depart"] == "" /*|| $_POST["time"] == "" || $_POST["name"] == "" || $_POST["money"] == "" || $_POST["depart"] == "" || $_POST["user"] == ""*/ /*&&
+                $_POST["address"] == "" && $_POST["foundtime"] == "" && $_POST["tel"] == "" */){
+                echo "<script>alert('部门不能为空，请输入部门');</script>";
+            }
+            else if($_POST["user"] == "" /*|| $_POST["time"] == "" || $_POST["name"] == "" || $_POST["money"] == "" || $_POST["depart"] == "" || $_POST["user"] == ""*/ /*&&
+                $_POST["address"] == "" && $_POST["foundtime"] == "" && $_POST["tel"] == "" */){
+                echo "<script>alert('负责人不能为空，请输入负责人姓名');</script>";
+            }
+            else if((is_numeric($_POST["id"])==0)){
+                echo"<script>alert('请写入数字');</script>";
+            }
+            else if(strlen($_POST["id"])!=9){
+                echo"<script>alert('请写入9位数字');</script>";
+            }
+            else if($check){
+                echo"<script>alert('该id已存在，请输入其他id');</script>";
+            }
+            /*else if(mysql_num_rows($_POST["id"])>0){
+                echo"<script>alert('该id已存在，请输入其他id');</script>";
+            }*/
+
+            /*else if($row>0){
+                echo"<script>alert('id已存在');</script>";
+            }*/
+            /*else if($pa==1){
+                echo"<script>alert('id已存在');</script>";
+            }*/
+
+            else {
                 $sql = mysqli_query($conne->init_conn(), "insert into caiwu
                             values('" . $_POST["id"] . "', '" . $_POST["time"] . "', '" . $_POST["name"] . "', '" . $_POST["money"] . "', '" . $_POST["depart"] . "', '" . $_POST["user"] . "'
                             )
@@ -117,7 +187,7 @@ if(@!is_null($_GET['trans_data'])) {
         if($_REQUEST['submit'] == "查找") {
             $sql = mysqli_query($conne->init_conn(),"select *
                from caiwu
-               where name LIKE '%" . $_POST['name'] . "%' and depart like '%" . $_POST['depart'] ."%'and date like '%" . $_POST['time'] ."%' /*and id ='". $_POST['id'] ."'*/
+               where name LIKE '%" . $_POST['name'] . "%' and depart like '%" . $_POST['depart'] ."%'and date like '%" . $_POST['time'] ."%' and user like'%". $_POST['user'] ."%' and id like'%". $_POST['id'] ."%'
                      ");
 
             if ($sql) {
@@ -125,17 +195,17 @@ if(@!is_null($_GET['trans_data'])) {
                     ?>
                     <tr>
                         <td align="center" bgcolor="#FFFFFF" class="STYLE4"><span
-                                class="STYLE2"><?php echo $myrow['id']; ?></span></td>
+                                    class="STYLE2"><?php echo $myrow['id']; ?></span></td>
                         <td align="center" bgcolor="#FFFFFF" class="STYLE4"><span
-                                class="STYLE2"><?php echo $myrow['date']; ?></span></td>
+                                    class="STYLE2"><?php echo $myrow['date']; ?></span></td>
                         <td height="23" align="center" bgcolor="#FFFFFF" class="STYLE4"><span
-                                class="STYLE2"><?php echo $myrow['name']; ?></span></td>
+                                    class="STYLE2"><?php echo $myrow['name']; ?></span></td>
                         <td height="23" align="center" bgcolor="#FFFFFF" class="STYLE4"><span
-                                class="STYLE2"><?php echo $myrow['money']; ?></span></td>
+                                    class="STYLE2"><?php echo $myrow['money']; ?></span></td>
                         <td height="23" align="center" bgcolor="#FFFFFF" class="STYLE4"><span
-                                class="STYLE2"><?php echo $myrow['depart']; ?></span></td>
+                                    class="STYLE2"><?php echo $myrow['depart']; ?></span></td>
                         <td height="23" align="center" bgcolor="#FFFFFF" class="STYLE4"><span
-                                class="STYLE2"><?php echo $myrow['user']; ?></span></td>
+                                    class="STYLE2"><?php echo $myrow['user']; ?></span></td>
 
                         <td height="23" align="center" bgcolor="#FFFFFF" class="STYLE4"><input type="button" value="确定" /></td>
                     </tr>

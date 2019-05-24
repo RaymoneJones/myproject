@@ -1,4 +1,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<body background="beijing.jpg">
 <?php
 session_start();
 include("conn/conn.php");
@@ -24,3 +25,5 @@ if(isset($_GET["id"])) {
 <?php
         }
 }
+?>
+</body>
