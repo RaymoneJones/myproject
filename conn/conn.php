@@ -3,7 +3,7 @@
 class opmysql{
 
     private $host = 'localhost';
-    private $name = 'root';
+    private $name = 'test';
     private $pwd = '123456';
     private $dBase = 'test';
 
