@@ -5,6 +5,9 @@ include("conn/conn.php");
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
@@ -12,7 +15,7 @@ include("conn/conn.php");
     <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body background="beijing.jpg">
 
 <?php
 if(@!is_null($_GET['trans_data'])) {
@@ -27,82 +30,85 @@ if(@!is_null($_GET['trans_data'])) {
 }
 ?>
 
-<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="information" enctype="multipart/form-data">
-	<table width="405" align="center">
-    	<tr>
-        	<td width="103" align="right">职工号：</td>
-            <td width="144" height="25"><input name="id" type="text" id="id" size="20" maxlength="20" value=<?php echo @$out1['user_id']; ?>> </td>
-        </tr>
-        <tr>
-        	<td width="103" align="right">姓名：</td>
-            <td width="144" height="25"><input name="name" type="text" id="name" size="20" maxlength="100" value=<?php echo @$out1['user_name']; ?>></td>
-        </tr>
-        <tr>
-            <td width="103" align="right">密码：</td>
-            <td width="144" height="25"><input name="pwd" type="password" id="pwd" size="20" maxlength="20" value=<?php echo @$out1['user_password']; ?>></td>
-        </tr>
-        <!--<tr>
-            <td width="103" align="right">部门：</td>
-            <td width="144" height="25"><input name="branch" type="text" id="branch" size="20" maxlength="100"></td>
-        </tr>-->
-        <tr>
-            <td width="103" align="right">部门：</td>
-             <td>
-                <select name="branch" id="branch" style="width:144px;">
-                    <option value=<?php echo @$out1['user_branch']; ?> ><?php echo @$out1['user_branch']; ?></option>
-                    <option value="财务部" >财务部</option>
-                    <option value="后勤部">后勤部</option>
-                    <option value="人力资源部">人力资源部</option>
-                    <option value="营销中心">营销中心</option>
-                </select>
-             </td>
-        </tr>
-        <tr>
-            <td width="103" align="right">职位：</td>
-            <!--<td width="144" height="25"><input name="job" type="text" id="job" size="20" maxlength="100" value="职员"></td> -->
-            <td>
-            <select name="job" id="job" style="width:144px;">
+<form  name = "information" class="form-horizontal" role="form" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+    <div class="form-group">
+        <label for="id" class="col-sm-2 control-label">职工号</label>
+        <div class="col-sm-10">
+            <input type="text" style="width:30%"; class="form-control" id="id" name="id" placeholder="请输入职工号" size="20" maxlength="20" value=<?php echo @$out1['user_id']; ?>>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">姓名</label>
+        <div class="col-sm-10">
+            <input type="text" style="width:30%"; class="form-control" id="name" name="name" placeholder="请输入姓名" size="20" maxlength="100" value=<?php echo @$out1['user_name']; ?>>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pwd" class="col-sm-2 control-label">密码</label>
+        <div class="col-sm-10">
+            <input type="text" style="width:30%"; class="form-control" id="pwd" name="pwd" placeholder="请输入密码" size="20" maxlength="20" value=<?php echo @$out1['user_password']; ?>>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="branch" class="col-sm-2 control-label">部门</label>
+        <div class="col-sm-10">
+            <select name="branch" id="branch" style="width:30%"; class="form-control">
+                <option value=<?php echo @$out1['user_branch']; ?> ><?php echo @$out1['user_branch']; ?></option>
+                <option value="财务部" >财务部</option>
+                <option value="后勤部">后勤部</option>
+                <option value="人力资源部">人力资源部</option>
+                <option value="营销中心">营销中心</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="job" class="col-sm-2 control-label">职位</label>
+        <div class="col-sm-10">
+            <select name="job" id="job" style="width:30%"; class="form-control">
                 <option value=<?php echo @$out1['user_job']; ?> ><?php echo @$out1['user_job']; ?></option>
                 <option value="职员">职员</option>
                 <option value="经理">经理</option>
             </select>
-            </td>
-        </tr>
-        <tr>
-        	<td width="103" align="right">性别：</td>
-            <!--<td width="144" height="25"><input name="sex" type="text" id="sex" size="20" maxlength="10"></td>-->
-            <td>
-                <select name="sex" id="sex" style="width:144px;">
-                    <option value=<?php echo @$out1['user_sex']; ?> ><?php echo @$out1['user_sex']; ?></option>
-                    <option value="男">男</option>
-                    <option value="女">女</option>
-                </select>
-            </td>
-        </tr>
-       <tr>
-        	<td width="103" align="right">电话：</td>
-            <td width="144" height="25"><input name="tel" type="text" id="tel" size="20" maxlength="20" value=<?php echo @$out1['user_tel']; ?>></td>
-        </tr>
-        <tr>
-        	<td width="103" align="right">地址：</td>
-            <td width="144" height="25"><input name="address" type="text" id="address" size="20" maxlength="100" value=<?php echo @$out1['user_address']; ?>></td>
-        </tr>
-        <tr>
-        	<td width="103" align="right">入职时间：</td>
-            <td width="144" height="25"><input name="foundtime" type="text" id="foundtime" size="20" maxlength="20" value=<?php echo @$out1['user_foundtime']; ?>></td>
-        </tr>
-	</table>
-    <br>
-<div style="text-align:center;">
-    <input type="submit" name="submit" id = "add" value="添加">
-    <input type="submit" name="submit" id = "delete" value="删除">
-    <input type="submit" name="submit" id = "find" value="查找">
-    <input type="submit" name="submit" id = "modify" value="修改">
-    <br><br>
-</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="sex" class="col-sm-2 control-label">性别</label>
+        <div class="col-sm-10">
+            <select name="sex" id="sex" style="width:30%"; class="form-control">
+                <option value=<?php echo @$out1['user_sex']; ?> ><?php echo @$out1['user_sex']; ?></option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for=tel" class="col-sm-2 control-label">电话</label>
+        <div class="col-sm-10">
+            <input type="text" style="width:30%"; class="form-control" id="tel" name="tel" placeholder="请输入电话" size="20" maxlength="20" value=<?php echo @$out1['user_tel']; ?>>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="address" class="col-sm-2 control-label">地址</label>
+        <div class="col-sm-10">
+            <input type="text" style="width:30%"; class="form-control" id="address" name="address" placeholder="请输入地址" size="20" maxlength="20" value=<?php echo @$out1['user_address']; ?>>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="foundtime" class="col-sm-2 control-label">入职时间</label>
+        <div class="col-sm-10">
+            <input type="text" style="width:30%"; class="form-control" id="foundtime" name="foundtime" placeholder="请输入入职时间" size="20" maxlength="20" value=<?php echo @$out1['user_foundtime']; ?>>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input name = "submit" type = "submit" id = "add" class="btn btn-default" value = "添加">
+            <input name = "submit" type = "submit" id = "delete" class="btn btn-default" value = "删除">
+            <input name = "submit" type = "submit" id = "find" class="btn btn-default" value = "查找">
+            <input name = "submit" type = "submit" id = "modify" class="btn btn-default" value = "修改">
+        </div>
 </form>
-
-<table id = "infor" width = "800" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#990000">
+<br><br>
+<table class="table table-striped" id = "infor" width = "800" >
     <tr>
         <td width="100" align="center" bgcolor="#FFFFFF" class="STYLE4">职工号</td>
         <td width="102" align="center" bgcolor="#FFFFFF" class="STYLE4">姓名</td>
@@ -124,6 +130,10 @@ if(@!is_null($_GET['trans_data'])) {
            if($_POST["id"] == "" || $_POST["name"] == "" || $_POST["sex"] == "" || $_POST["pwd"] == "" || $_POST["branch"] == "" ||
                $_POST["job"] == "" || $_POST["address"] == "" || $_POST["foundtime"] == "" || $_POST["tel"] == "" ){
                echo "<script>alert('输入信息不完整');</script>";
+           }else if(!is_numeric($_POST["id"]) || strlen($_POST["id"])!=9) {
+               echo "<script>alert('职工号只能为9位数字');</script>";
+           }else if(strlen($_POST["pwd"])<9 || strlen($_POST["pwd"])>18) {
+               echo "<script>alert('密码长度只能为9到18位');</script>";
            }else if (mysqli_num_rows($sql)>0)
            {
                echo "<script>alert('职工号已存在！');</script>";
@@ -192,6 +202,10 @@ if(@!is_null($_GET['trans_data'])) {
             if($_POST["id"] == "" || $_POST["name"] == "" || $_POST["sex"] == "" || $_POST["pwd"] == "" || $_POST["branch"] == "" || $_POST["job"] == "" ||
                 $_POST["address"] == "" || $_POST["foundtime"] == "" || $_POST["tel"] == "" ){
                 echo "<script>alert('输入信息不完整！');</script>";
+            }else if(!is_numeric($_POST["id"]) || strlen($_POST["id"])!=9) {
+                echo "<script>alert('职工号只能为9位数字');</script>";
+            }else if(strlen($_POST["pwd"])<9 || strlen($_POST["pwd"])>18) {
+                echo "<script>alert('密码长度只能为9到18位');</script>";
             }else if($_SESSION["modify_id"]!=$_POST['id'] && (mysqli_num_rows($sql)>0)) {
                 //echo $_SESSION["modify_id"];echo $_POST['id'];     //检验输出
                 echo "<script>alert('职工号已存在！');</script>";

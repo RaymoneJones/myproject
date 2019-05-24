@@ -3,19 +3,21 @@
 session_start();
 include("conn/conn.php");
 
-if(isset($_GET["title"])) {
+if(isset($_GET["id0"])) {
     // header("Content-type: text/html; charset=gb2312");
-    $hi = $_GET["title"];
+    $hi = $_GET["id0"];
     // echo $hi;
 
     $sql = mysqli_query($conne->init_conn(),"select *
                from tb_news
-               where news_tittle = '$hi'");
+               where news_id = '$hi'");
     while ($myrow = mysqli_fetch_array($sql, MYSQLI_ASSOC)) {
         //echo $myrow['pcard_content'];
         ?>
         <html>
-        <h1 align="center"><?php echo $hi; ?></h1>
+        <h1 align="center"><?php echo $myrow['news_tittle']; ?></h1>
+        <p align="center" class="lead"><?php echo $myrow['news_author']; ?></p>
+        <p align="center" class="lead"><?php echo $myrow['news_time']; ?></p>
         <br><br>
         <p align="center" class="lead"><?php echo $myrow['news_content']; ?></p>
         </html>

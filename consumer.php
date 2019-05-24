@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/consumer.css">
 <script src="js/consumer.js" type="text/javascript"></script>
 </head>
-<body onload="getTime()" style="height: 100% width:100%">
+<body onload="getTime()" style="height: 100% width:100%" >
 	<div class="firstguidence" id="top">
 			<div>
                 <table>

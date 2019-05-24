@@ -73,7 +73,7 @@ include("conn/conn.php");		//包含数据库文件
                         </a>
                     </li>
                     <li id="company">
-                        <a href="#" target="menuFrame">
+                        <a href="jianjie.html" target="menuFrame">
                             <i class="glyphicon glyphicon-cog"></i>
                             公司简介
                                
@@ -124,7 +124,6 @@ include("conn/conn.php");		//包含数据库文件
 
         </div>
     </div>
-
 </body>
 </html>
 <script>

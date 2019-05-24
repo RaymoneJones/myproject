@@ -5,12 +5,14 @@ include("conn/conn.php");
 <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<body background="beijing.jpg">
 <ul id="myTab" class="nav nav-tabs">
 	<li class="active"><a href="#first" data-toggle="tab">营销中心</a></li>
 	<li><a href="#second" data-toggle="tab">人力资源部</a></li>
 	<li><a href="#third" data-toggle="tab">后勤部</a></li>
     <li><a href="#forth" data-toggle="tab">财务部</a></li>
 </ul>
+</body>
 <?php
 	if(isset($_GET["type"])){ //判断所需要的参数是否存在
 		if($_GET["type"]==2){
@@ -94,7 +96,9 @@ include("conn/conn.php");
 	<div class="tab-pane fade" id="second">
             <div>
                 <h2>部门简介</h2>
-                <p>人力资源部门</p>
+                <p>负责单位人力资源的管理，为单位提供和培养合格的人才，根据单位实际情况和发展规划拟定单位人力资源计划，经批准后组织实施，制订人力资源部年度工作目标和工作计划，
+                    按月做出预算及工作计划，经批准后施行 ，组织制订单位用工制度、人事管理制度、劳动工资制度、人事档案管理制度、员工手册、培训大纲等规章制度、实施细则和人力资源
+                    部工作程序，经批准后组织实施， 制订人力资源部专业培训计划并协助培训部实施、考核，加强与单位外同行之间的联系。</p>
             </div>
             <div>
                 <h2>成员信息</h2>
@@ -149,7 +153,9 @@ include("conn/conn.php");
 	<div class="tab-pane fade" id="third">
             <div>
                 <h2>部门简介</h2>
-                <p>后勤部门</p>
+                <p>主要从事人事档案管理；宿舍房间，床位管理，宿舍物品租借管理，宿舍水电表记录及水电费的计算等；办公用品管理，档案管理，印信管理，资产管理，车辆管理，
+                    办公秩序及行为管理，前台管理，电话管理，计算机管理，打印室、复印室管理，环保安全健康，员工培训，会议管理，公司物品租借，员工借贷款，出差管理，差费报销，
+                    内部通知及公司访客记录等。固定资产管理，图书管理。</p>
             </div>
             <div>
                 <h2>成员信息</h2>
@@ -203,7 +209,9 @@ include("conn/conn.php");
 	<div class="tab-pane fade" id="forth">
             <div>
                 <h2>部门简介</h2>
-                <p>财务部门</p>
+                <p>起草公司年度经营计划；组织编制公司年度财务预算；执行、监督、检查、总结经营计划和预算的执行情况，提出调整建议，执行国家的财务会计政策、税收政策和法规；
+                    制订和执行公司会计政策、纳税政策及其管理政策；整合公司业务体系资源，发挥公司综合优势，实现公司整体利益的最大化；公司的会计核算、会计监督工作；公司会计
+                    档案管理及合同（协议）、有价证券、抵（质）押法律凭证的保管；编写公司经营管理状况的财务分析报告。</p>
             </div>
             <div>
                 <h2>成员信息</h2>

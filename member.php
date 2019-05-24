@@ -5,6 +5,7 @@ include("conn/conn.php");
 <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<body background="beijing.jpg">
 <ul id="myTab" class="nav nav-tabs">
 	<li class="active"><a href="#first" data-toggle="tab">所有成员</a></li>
 	<li><a href="#second" data-toggle="tab">成员添加</a></li>
@@ -354,3 +355,4 @@ include("conn/conn.php");
     </div>
   
 </div>
+</body>

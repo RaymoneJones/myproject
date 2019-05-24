@@ -2,6 +2,7 @@
 session_start();
 include("conn/conn.php");
 ?>
+<body background="beijing.jpg">
 <link rel="stylesheet" type="text/css" href="css/homepage.css">
 <div class="left" style="height:100%">
 	<div id="newstop">
@@ -18,8 +19,8 @@ include("conn/conn.php");
 				$num=-1;
 				$ber=$conne->getRowsNum($sql);
 				while($num++<8&&$ber-->0){
-                    $title = $row[$num]['news_tittle'];
-					echo '<li><a class="tt" target="_blank" href="news.php?title='.$title.'">'. $row[$num]['news_tittle'] .'</a>&nbsp;&nbsp;&nbsp;&nbsp;'.$row[$num]['news_time'].'</li>';
+                    $id0 = $row[$num]['news_id'];
+					echo '<li><a class="tt" target="_blank" href="news.php?id0='.$id0.'">'. $row[$num]['news_tittle'] .'</a>&nbsp;&nbsp;&nbsp;&nbsp;'.$row[$num]['news_time'].'</li>';
 				}
 			?>
 			
@@ -33,6 +34,7 @@ include("conn/conn.php");
 				<a href="allnews.php">更多>>>></a>
 			</div>
 		</div>
+
 		<div id="noticeblock">
 			<ul>
 				<?php
@@ -41,14 +43,14 @@ include("conn/conn.php");
 					$num1=-1;
 					$ber1=$conne1->getRowsNum($sql1);
 					while($num1++<8&&$ber1-->0){
-					    $title = $row1[$num1]['pcard_subject'];
-						echo '<li><a class="tt" target="_blank" href="pcard.php?subject='.$title.'">'. $row1[$num1]['pcard_subject'] .'</a></li>';
+					    $id = $row1[$num1]['pcard_id'];
+						echo '<li><a class="tt" target="_blank" href="pcard.php?id='.$id.'">'. $row1[$num1]['pcard_subject'] .'</a>&nbsp;&nbsp;&nbsp;&nbsp;'.$row1[$num1]['pcard_time'].'</li>';
 
 					}
 				?>
 			</ul>
 		</div>
 </div>
-
+</body>
 
        
