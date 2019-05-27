@@ -108,8 +108,10 @@ if(isset($_GET["type"])){ //判断所需要的参数是否存在
                     </thead>
                     <tbody>
                     <?php
-                    $con=mysqli_connect("localhost","root","123456","test");
-                    $sql="select * from tb_office";
+                    $con=mysqli_connect("localhost","test","123456","test");
+		     mysqli_query($con,"set names utf8");
+
+		    $sql="select * from tb_office";
                     $result=mysqli_query($con,$sql);
                     $num=10;
                     if($num--){
@@ -272,8 +274,10 @@ if(isset($_GET["type"])){ //判断所需要的参数是否存在
                     </thead>
                     <tbody>
                     <?php
-                    $con=mysqli_connect("localhost","root","123456","test");
-                    $sql="select * from tb_apply";
+                    $con=mysqli_connect("localhost","test","123456","test");
+		     mysqli_query($con,"set names utf8");
+
+		    $sql="select * from tb_apply";
                     $result=mysqli_query($con,$sql);
                     $num=10;
                     $sstate='';
@@ -402,8 +406,9 @@ if(isset($_GET["type"])){ //判断所需要的参数是否存在
                     </thead>
                     <tbody>
                     <?php
-                    $con=mysqli_connect("localhost","root","123456","test");
-                    $sql="select * from tb_expense";
+                    $con=mysqli_connect("localhost","test","123456","test");
+		    mysqli_query($con,"set names utf8");
+		    $sql="select * from tb_expense";
                     $result=mysqli_query($con,$sql);
                     $num=10;
                     $sstate='';

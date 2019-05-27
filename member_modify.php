@@ -26,7 +26,7 @@ include("conn/conn.php");
         <td width="150" align="center" bgcolor="#FFFFFF" class="STYLE4">入职时间</td>
         <!-- <td height="23" align="center" bgcolor="#FFFFFF" class="STYLE4"><input width = "20" type="button" value="确定" /></td> -->
     </tr>
-
+</table>
 <?php
 /*
 if($_POST["submit"] == "修改"){      //判断提交的按钮名称是否为“修改”
@@ -62,7 +62,7 @@ $sql = mysqli_query($conne1->init_conn(), "select *
 if ($sql) {
     while ($myrow = mysqli_fetch_array($sql, MYSQLI_ASSOC)) {
         ?>
-
+	<table class="table table-striped">
         <tr>
             <td width="100" align="center" bgcolor="#FFFFFF" class="STYLE4"><?php echo $myrow['user_id']; ?></td>
             <td width="100" align="center" bgcolor="#FFFFFF" class="STYLE4"><?php echo $myrow['user_name']; ?></td>

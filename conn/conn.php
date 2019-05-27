@@ -3,7 +3,7 @@
 class opmysql{
 
     private $host = 'localhost';
-    private $name = 'root';
+    private $name = 'test';
     private $pwd = '123456';
     private $dBase = 'test';
 
@@ -16,6 +16,7 @@ class opmysql{
     private $rowsRst = '';
     private $filesArray = array();
     private $rowsArray = array();
+    
 
 
     function __construct($host = '',$name = '',$pwd = '',$dBase = ''){
@@ -32,7 +33,8 @@ class opmysql{
 
     //连接数据库
     function init_conn() {
-        $this->conn=@mysqli_connect($this->host,$this->name,$this->pwd,$this->dBase);
+	    $this->conn= @mysqli_connect($this->host,$this->name,$this->pwd,$this->dBase);
+	    mysqli_query($this->conn,"set names utf8");
         return $this->conn;     //我加了一个返回数据库连接
     }
 
